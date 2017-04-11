@@ -1,0 +1,24 @@
+[user]
+	name = Jason Quense
+	email = monastic.panic@gmail.com
+[alias]
+  co = checkout
+  ec = config --global -e
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  cob = checkout -b
+  cm = !git add -A && git commit -m
+	rac = !git add . && git rebase --continue
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = !git add -A && git commit -m "WIP"
+	undo = reset HEAD~1 --mixed
+  amend = commit -a --amend --no-edit
+	push = push --follow-tags
+	pushf = push -f
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+	publish = "!f() { git rev-parse --abbrev-ref HEAD | xargs git push --set-upstream origin; }; f"
+	pr = "!f() { git cm \"${1}\" && git publish && hub pull-request -m \"${1}\"; }; f"
+	quickpr = "!f() { git cob ${1} && git cm \"${2}\" && git publish && hub pull-request -m \"${2}\"; }; f"
+[push]
+	default = simple
