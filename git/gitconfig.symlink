@@ -8,7 +8,7 @@
 	email = monastic.panic@gmail.com
 [core]
 	editor = code --wait
-	excludesfile = /Users/jason/.gitignore_global
+	excludesfile = ~/.gitignore
 [alias]
   co = checkout
   ec = config --global -e
@@ -32,3 +32,5 @@
 	quickpr = "!f() { git cob ${1} && git cm \"${2}\" && git publish && hub pull-request -m \"${2}\"; }; f"
 [push]
 	default = simple
+[credential]
+	helper = osxkeychain

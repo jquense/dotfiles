@@ -1,0 +1,36 @@
+tap 'caskroom/cask'
+tap 'caskroom/fonts'
+tap 'caskroom/versions'
+tap 'homebrew/bundle'
+
+nrew 'curl'
+brew 'awscli'
+brew 'mas'
+brew 'python'
+brew 'pyenv'
+brew 'pyenv-virtualenv'
+brew 'zsh'
+brew 'zsh-autosuggestions'
+brew 'zsh-syntax-highlighting'
+brew 'postgresql'
+brew 'yarn'
+brew 'hub'
+
+cask 'visual-studio-code'
+cask 'firefox'
+cask 'brave-browser'
+cask 'google-chrome'
+cask 'docker'
+
+cask 'iterm2'
+cask 'ngrok'
+cask 'lastpass'
+cask 'github'
+cask 'slack'
+cask 'insomnia'
+
+cask 'font-lato'
+cask 'font-open-sans'
+cask 'font-roboto'
+
+mas 'Giphy Capture', id: 668208984
