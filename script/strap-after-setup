@@ -4,4 +4,14 @@ chsh -s $(which zsh)
 
 source ~/.zshrc
 
+# fonts
+cp -r $DOTFILES/fonts/. ~/Library/Fonts
+
+ITERM_PROFILES = "$HOME/Library/Application Support/iTerm2/DynamicProfiles"
+
+if [ ! -d "$ITERM_PROFILES" ]; then
+  mkdir -p "$ITERM_PROFILES"
+fi
+cp $DOTFILES/fonts/profiles.json $ITERM_PROFILES
+
 code --install-extension "Shan.code-settings-sync"
