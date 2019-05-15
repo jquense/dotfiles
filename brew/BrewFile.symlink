@@ -2,14 +2,15 @@ tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
-tap "homebrew/services"
+tap 'homebrew/services'
+tap 'homebrew/cask-drivers'
 
 brew 'curl'
-brew "wget"
+brew 'wget'
 brew 'zsh'
 brew 'zsh-autosuggestions'
 brew 'zsh-syntax-highlighting'
-brew "git-lfs"
+brew 'git-lfs'
 brew 'awscli'
 brew 'mas'
 brew 'python'
@@ -17,10 +18,10 @@ brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'postgresql', restart_service: true
-brew "redis", restart_service: true
+brew 'redis', restart_service: true
 brew 'yarn'
 brew 'hub'
-brew "watchman"
+brew 'watchman'
 
 cask 'iterm2'
 cask 'docker'
@@ -35,8 +36,10 @@ cask 'discord'
 cask 'postico'
 cask 'zeplin'
 cask 'logitech-gaming-software'
+cask 'hyperdock'
 cask 'onedrive'
-cask "aptible"
+cask 'aptible'
+cask 'dotnet-sdk'
 
 cask 'ngrok'
 cask 'insomnia'
@@ -46,5 +49,5 @@ cask 'font-lato'
 cask 'font-open-sans'
 cask 'font-roboto'
 
-mas 'HyperDock', id: 449830122
 mas 'Giphy Capture', id: 668208984
+mas 'LastPass Password Manager', id 926036361

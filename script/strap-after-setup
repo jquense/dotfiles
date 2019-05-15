@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/usr/local/bin/zsh
 
 chsh -s $(which zsh)
+
+# create default shell for user
+dscl . -create /Users/$USER UserShell $(which zsh)
 
 source ~/.zshrc
 
@@ -16,3 +19,13 @@ fi
 cp $DOTFILES/fonts/profiles.json $ITERM_PROFILES
 
 code --install-extension "Shan.code-settings-sync"
+
+# Fix for pyenv on Mjave 10.14+
+# https://github.com/pyenv/pyenv/wiki/Common-build-problems
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+
+# o-my-zsh
+env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "~/.oh-my-zsh" || {
+    printf "Error: git clone of oh-my-zsh repo failed\n"
+    exit 1
+  }
