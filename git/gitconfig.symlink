@@ -1,36 +1,42 @@
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [user]
-	name = Jason Quense
-	email = monastic.panic@gmail.com
+  name = Jason Quense
+  email = monastic.panic@gmail.com
 [core]
-	editor = code --wait
-	excludesfile = ~/.gitignore
+  editor = code --wait
+ excludesfile = ~/.gitignore
 [alias]
   co = checkout
   ec = config --global -e
   up = !git pull --rebase --prune $@ && git submodule update --init --recursive
   cob = checkout -b
   cm = !git add -A && git commit -m
-	rac = !git add . && git rebase --continue
+  rac = !git add . && git rebase --continue
+  ra = !git rebase --abort
+  rs = !git rebase --skip
+  delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
+  sync = "!f() { git checkout --detach --quiet HEAD && git fetch ${1-upstream} master:master && git checkout --quiet -; }; f"
+  switch-base = "!f() { git rebase --onto master $1 $(git rev-parse --abbrev-ref HEAD); }; f"
   save = !git add -A && git commit -m 'SAVEPOINT' --no-verify
   wip = !git add -A && git commit -m "WIP" --no-verify
-	undo = reset HEAD~1 --mixed
+  undo = reset HEAD~1 --mixed
   amend = commit -a --amend --no-edit
-	push = push --follow-tags
-	pushf = push -f
-	bd = branch -d
-	bdd = branch -d -D
+  push = push --follow-tags
+  pushf = push -f
+  bd = branch -d
+  bdd = branch -d -D
   wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
   bclean = "!f() { git branch --merged ${1-master} | (grep -v " ${1-master}$" || echo :) | xargs git branch -d; }; f"
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-	publish = "!f() { git rev-parse --abbrev-ref HEAD | xargs git push --set-upstream origin; }; f"
-	pr = "!f() { git cm \"${1}\" && git publish && hub pull-request -m \"${1}\"; }; f"
-	quickpr = "!f() { git cob ${1} && git cm \"${2}\" && git publish && hub pull-request -m \"${2}\"; }; f"
+  publish = "!f() { git rev-parse --abbrev-ref HEAD | xargs git push --set-upstream origin; }; f"
+  pr = "!f() { git cm \"${1}\" && git publish && hub pull-request -m \"${1}\"; }; f"
+  quickpr = "!f() { git cob ${1} && git cm \"${2}\" && git publish && hub pull-request -m \"${2}\"; }; f"
+  prune-gone = "!f() { for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done; }; f"
 [push]
-	default = simple
+  default = simple
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
