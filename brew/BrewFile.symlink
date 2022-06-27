@@ -1,6 +1,3 @@
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
 tap 'homebrew/cask-drivers'
@@ -20,10 +17,11 @@ brew 'rbenv'
 brew 'postgresql', restart_service: true
 brew 'redis', restart_service: true
 brew 'yarn'
-brew 'hub'
+brew 'gh'
 brew 'watchman'
 
 cask 'iterm2'
+cask 'aws-vault'
 cask 'docker'
 cask 'slack'
 cask 'github'
@@ -38,16 +36,11 @@ cask 'zeplin'
 cask 'logitech-gaming-software'
 cask 'hyperdock'
 cask 'onedrive'
-cask 'aptible'
 cask 'dotnet-sdk'
 
 cask 'ngrok'
 cask 'insomnia'
 cask 'lastpass'
-
-cask 'font-lato'
-cask 'font-open-sans'
-cask 'font-roboto'
 
 mas 'Giphy Capture', id: 668208984
 mas 'LastPass Password Manager', id 926036361
