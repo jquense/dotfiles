@@ -1,0 +1,2 @@
+mas !gt modify --all && gt submit
+rac !gt add -A && gt continue

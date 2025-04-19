@@ -4,11 +4,11 @@
   process = git-lfs filter-process
   required = true
 [user]
-  name = Jason Quense
-  email = monastic.panic@gmail.com
+  name = jquense
+	email = jquense@ramp.com
 [core]
   editor = code --wait
- excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [alias]
   co = checkout
   ec = config --global -e
@@ -40,3 +40,7 @@
   default = simple
 [credential]
   helper = osxkeychain
+[github]
+	user = jquense
+[includeIf "gitdir:~/oss"]
+    path = ~/.gitconfig-personal

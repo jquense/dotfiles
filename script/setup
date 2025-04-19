@@ -112,7 +112,7 @@ install_dotfiles () {
 }
 
 ## install first b/c we manually add to .zshrc
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.fnm" --skip-shell
 
 install_dotfiles
 

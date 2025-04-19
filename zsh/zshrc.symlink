@@ -1,8 +1,10 @@
+export PATH=$PATH:/opt/homebrew/bin 
+
 export DOTFILES=$HOME/.dotfiles
 
 export ZSH=$HOME/.oh-my-zsh
 
-export PROJECTS=~/src
+export PROJECTS=~/code
 
 ZSH_THEME="agnoster"
 
@@ -15,6 +17,11 @@ then
   source ~/.localrc
 fi
 
+if [[ -a ~/.zshrc_ramp ]]
+then
+  source ~/.zshrc_ramp
+fi
+
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
@@ -22,6 +29,7 @@ config_files=($DOTFILES/**/*.zsh)
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
+  echo $file
   source $file
 done
 
@@ -31,7 +39,7 @@ do
   source $file
 done
 
-plugins=(zsh-completions)
+plugins=(zsh-completions fnm)
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
@@ -44,3 +52,36 @@ do
 done
 
 unset config_files
+
+
+# pnpm
+export PNPM_HOME="/Users/jquense/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# pnpm end
+# bun completions
+[ -s "/opt/homebrew/Cellar/bun/1.0.0/share/zsh/site-functions/_bun" ] && source "/opt/homebrew/Cellar/bun/1.0.0/share/zsh/site-functions/_bun"
+
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: gt completion >> ~/.zshrc
+#    or gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
