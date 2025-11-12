@@ -85,3 +85,8 @@ _gt_yargs_completions()
 compdef _gt_yargs_completions gt
 ###-end-gt-completions-###
 
+export PATH=$HOME/.local/bin:$HOME/.opencode/bin:$PATH
+
+
+eval "$(devbox global shellenv)"
+eval "$(direnv hook zsh)"

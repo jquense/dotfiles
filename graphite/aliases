@@ -1,2 +1,5 @@
+ma !gt modify --all
 mas !gt modify --all && gt submit
 rac !gt add -A && gt continue
+wip !gt mm wip 
+wips !gt wip && gt ss
